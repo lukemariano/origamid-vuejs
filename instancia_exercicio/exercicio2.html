@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 2</title>
+
+    <!-- import VUEJS -->
+    <script src="./vue.js"></script>
+
+</head>
+
+<body>
+    <!-- // Faça o HTML abaixo funcionar com Vue -->
+    <div id="app">
+        <div>
+            {{ferramenta}}
+        </div>
+        <div>
+            {{instrumento}}
+        </div>
+
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                ferramenta: 'Martelo',
+                instrumento: 'Violão'
+            },
+        })
+    </script>
+</body>
+
+</html>
