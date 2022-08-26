@@ -27,6 +27,7 @@
 
   <div id="app">
     <p>Company Name: {{ apiJson.companyName }}</p>
+    <p>Stock Symbol: {{ apiJson.symbol }}</p>
     <p>Latest Price: {{ apiJson.latestPrice }}</p>
     <p>Latest Time: {{ apiJson.latestTime }}</p>
     <button @click="getApi()">Gerar Json</button>
@@ -43,6 +44,7 @@
           fetch("https://api.origamid.dev/stock/aapl/quote")
             .then(response => response.json())
             .then(myJson => {
+              console.log(myJson);
               this.apiJson = myJson;
             })
         }
