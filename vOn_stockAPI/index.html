@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-ON</title>
+
+    <!-- importando vue -->
+    <script src="./vue.js"></script>
+
+</head>
+
+<body>
+    <!--
+        Utilizando API
+        https://api.origamid.dev/stock/aapl/quote
+      
+        Adicione um evento de clique a cada <a> do html
+        acima e previna o comportamento padrão.
+      
+        Faça o fetch dos dados do href ao click e mostre na
+        interface o companyName, latestPrice, marketCap
+      -->
+
+    <div id="app">
+        <ul>
+            <li><a @click.prevent="getStocks" href="https://api.origamid.dev/stock/aapl/quote">Apple</a></li>
+            <li><a @click.prevent="getStocks" href="https://api.origamid.dev/stock/googl/quote">Google</a></li>
+            <li><a @click.prevent="getStocks" href="https://api.origamid.dev/stock/amzn/quote">Amazon</a></li>
+            <li><a @click.prevent="getStocks" href="https://api.origamid.dev/stock/ebay/quote">Ebay</a></li>
+            <li><a @click.prevent="getStocks" href="https://api.origamid.dev/stock/pypl/quote">Paypal</a></li>
+        </ul>
+
+        <h2>Company Name: {{ currentStock.companyName }}</h2>
+        <h3>Latest Price: U${{ currentStock.latestPrice }}</h3>
+        <h3>Market Cap: {{ currentStock.marketCap }}</h3>
+    </div>
+
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                currentStock: {},
+            },
+            methods: {
+                getStocks(event) {
+                    const url = event.currentTarget.href;
+                    fetch(`${url}`)
+                        .then(response => response.json())
+                        .then(jsonStock => {
+                            console.log(jsonStock);
+                            this.currentStock = jsonStock;
+                        })
+                },
+            },
+        })
+    </script>
+</body>
+
+</html>
