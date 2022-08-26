@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-BIND COM API</title>
+
+    <!-- importando vue -->
+    <script src="./vue.js"></script>
+
+</head>
+
+<body>
+    <!--
+  Utilizando as API's
+  https://api.origamid.dev/stock/aapl/quote
+  https://api.origamid.dev/stock/googl/quote
+
+  - Compare o marketCap (valor de
+  mercado) entre ambas.
+
+  - Mostre o nome das empresas e o valor
+  na interace (companyName e marketCap).
+
+  - Mude a cor para verde o nome da empresa com
+  maior marketCap e vermelho a com menor.
+-->
+
+
+    <div id="app">
+        <h1>Json 1:</h1>
+        <p>Company Name: {{
+            apiApple.companyName }}</p>
+        <p>Stock Symbol: {{ apiApple.symbol }}</p>
+        <p :style="{color: (apiApple.marketCap > apiGoogle.marketCap) ? maiorCap : menorCap}">{{
+            apiApple.marketCap }}</p>
+
+        <h1>Json 2:</h1>
+        <p>Company Name: {{
+            apiGoogle.companyName }}</p>
+        <p>Stock Symbol: {{ apiGoogle.symbol }}</p>
+        <p :style="{color: (apiGoogle.marketCap > apiApple.marketCap) ? maiorCap : menorCap}">{{
+            apiGoogle.marketCap }}</p>
+        <button @click="puxarDados">Puxar dados</button>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                apiApple: 0,
+                apiGoogle: {},
+                maiorCap: "green",
+                menorCap: "red"
+            },
+            methods: {
+                getApple() {
+                    fetch("https://api.origamid.dev/stock/aapl/quote")
+                        .then(response => response.json())
+                        .then(jsonApple => {
+                            console.log(jsonApple);
+                            this.apiApple = jsonApple;
+                        })
+                },
+                getGoogle() {
+                    fetch("https://api.origamid.dev/stock/googl/quote")
+                        .then(response => response.json())
+                        .then(jsonGoogle => {
+                            console.log(jsonGoogle);
+                            this.apiGoogle = jsonGoogle;
+                        })
+                },
+                puxarDados() {
+                    this.getApple()
+                    this.getGoogle()
+                }
+            },
+        })
+    </script>
+
+</body>
+
+</html>
