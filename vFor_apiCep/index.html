@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cep API com VUE</title>
+
+    <!-- importando vue -->
+    <script src="./vue.js"></script>
+
+</head>
+
+<body>
+    <!--
+  Utilizando a api:
+  https://viacep.com.br/ws/04538133/json/
+  Mostre o cep, logradouro, complemento, bairro, localidade e uf do que for retornado.
+
+  
+  Use o arquivo json da aula, para listar os cursos e as matérias.
+-->
+
+    <div id="app">
+        <h1>API - CEP</h1>
+        <ul>
+            <li v-for="(cep, key) in ceps">{{key.toUpperCase()}}: {{ cep }}</li>
+        </ul>
+        <button @click="getCep">Buscar Cep</button>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                ceps: {},
+            },
+            methods: {
+                getCep() {
+                    fetch("https://viacep.com.br/ws/04538133/json/")
+                        .then(response => response.json())
+                        .then(jsonCep => {
+                            console.log(jsonCep);
+                            this.ceps = jsonCep
+                        })
+                },
+            },
+        })
+    </script>
+</body>
+
+</html>

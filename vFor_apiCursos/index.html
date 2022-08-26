@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos - API</title>
+
+    <!-- importando vue -->
+    <script src="./vue.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+        <h1>Cursos: </h1>
+        <ul v-for="(curso, key, index) in cursos">
+            <h3>{{ key.toUpperCase() }}</h3>
+            <li v-for="item in curso"> {{ item }}</li>
+        </ul>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                cursos: {
+                    html: ['css', 'div', 'flexbox'],
+                    javaScript: ['lógica', 'tipos de dados', 'DOM'],
+                    php: ['sintaxe', 'xamp', 'inputs'],
+                },
+            },
+            methods: {
+
+            },
+        })
+    </script>
+</body>
+
+</html>
