@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Methods - API</title>
+
+  <!-- importando VUEJS -->
+  <script src="./vue.js"></script>
+
+</head>
+
+<body>
+  <!--
+  Utilizando uma API
+  
+
+  Crie um método que faça o fetch da resposta da api
+  O método deve ser ativado ao clique em um botão 
+
+  Coloque a resposta json do fetch em uma data e
+  mostre o valor de latestPrice, latestTime e o
+  companyName na interface.
+-->
+
+  <div id="app">
+    <p>Company Name: {{ apiJson.companyName }}</p>
+    <p>Latest Price: {{ apiJson.latestPrice }}</p>
+    <p>Latest Time: {{ apiJson.latestTime }}</p>
+    <button @click="getApi()">Gerar Json</button>
+  </div>
+
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        apiJson: {},
+      },
+      methods: {
+        getApi() {
+          fetch("https://api.origamid.dev/stock/aapl/quote")
+            .then(response => response.json())
+            .then(myJson => {
+              this.apiJson = myJson;
+            })
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>
