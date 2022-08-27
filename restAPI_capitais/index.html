@@ -2,19 +2,19 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>REST API - CAPITAIS</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>REST API - CAPITAIS</title>
 
-    <!-- importando vue -->
-    <script src="./vue.js"></script>
+  <!-- importando vue -->
+  <script src="./vue.js"></script>
 
 </head>
 
 <body>
 
-    <!--
+  <!--
   Você possui o nome e sobrenome do usuário em data,
   crie uma propriedade computed que retorne o nome completo
   
@@ -33,19 +33,19 @@
   </select>
 -->
 
-    <div id="app">
-        <h1>Nome usuário: </h1>
-        <p>{{ nomeCompleto }}</p>
+  <div id="app">
+    <h1>Nome usuário: </h1>
+    <p>{{ nomeCompleto }}</p>
 
-        <h1>Selecione um país: </h1>
-        <select @click="getPaises" v-model="selecionado">
-            <option v-for="pais in paises" :value="pais.name">{{pais.name}}</option>
-        </select>
+    <h1>Selecione um país: </h1>
+    <select @click="getPaises" v-model="selecionado">
+      <option v-for="pais in paises" :value="pais.name">{{pais.name}}</option>
+    </select>
 
-        <h3>Capital do país selecionado: {{ capitalSelecionada }}</h3>
-    </div>
+    <h3>Capital do país selecionado: {{ capitalSelecionada.capital }}</h3>
+  </div>
 
-    <script src="./script.js"></script>
+  <script src="./script.js"></script>
 </body>
 
 </html>

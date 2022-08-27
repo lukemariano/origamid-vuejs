@@ -5,7 +5,7 @@ const vm = new Vue({
         sobrenome:'Mariano',
         paises:{},
         selecionado: '',
-        capitalSelecionada:null,
+        capitalSelecionada:'',
     },
     computed:{
         nomeCompleto(){
@@ -22,14 +22,9 @@ const vm = new Vue({
         },
     },
     watch:{
-        selecionado(){
-            fetch(`https://restcountries.com/v2/name/${this.selecionado}`)
-            .then(response => response.json())
-            .then(jsonCapital => {
-                console.log(this.selecionado);
-                this.capitalSelecionada = jsonCapital[0].capital;
-            })
-        },
+       selecionado(valor){
+            this.capitalSelecionada = this.paises.find((pais) => pais.name === valor);
+       },
     },
 
 })
