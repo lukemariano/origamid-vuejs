@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REST API - CAPITAIS</title>
+
+    <!-- importando vue -->
+    <script src="./vue.js"></script>
+
+</head>
+
+<body>
+
+    <!--
+  Você possui o nome e sobrenome do usuário em data,
+  crie uma propriedade computed que retorne o nome completo
+  
+  Utilize a rest API para puxar as capitais dos paises
+  Use um campo de select, onde o usuário pode selecionar o país.
+  https://restcountries.com/v2/all
+
+  Com uma função watch, mude a capital de acordo com o país selecionado:
+
+  Ex de campo select:
+
+  <select name="paises" id="paises" v-model="selecionado">
+    <option v-for="pais in paises" :value="pais.name">
+      {{pais.name}}
+    </option>
+  </select>
+-->
+
+    <div id="app">
+        <h1>Nome usuário: </h1>
+        <p>{{ nomeCompleto }}</p>
+
+        <h1>Selecione um país: </h1>
+        <select @click="getPaises" v-model="selecionado">
+            <option v-for="pais in paises" :value="pais.name">{{pais.name}}</option>
+        </select>
+
+        <h3>Capital do país selecionado: {{ capitalSelecionada }}</h3>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
